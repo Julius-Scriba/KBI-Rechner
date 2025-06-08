@@ -104,3 +104,21 @@ Ein Neustart des Dienstes ist nach Änderungen an den Quellen nötig:
 ```bash
 sudo systemctl restart maerkischerhofladen.service
 ```
+
+## SSL Setup
+
+Um HTTPS für die Domain maerkischerhofladen.de zu aktivieren, kann das Skript
+`enable-ssl-hofladen.sh` genutzt werden. Es installiert bei Bedarf Certbot, legt
+ein Backup der vorhandenen nginx-Konfiguration an und richtet anschließend das
+Zertifikat sowie einen automatischen Redirect von HTTP auf HTTPS ein. Zusätzlich
+wird eine sichere Mozilla-Konfiguration eingebunden.
+
+Ausführen auf dem Server:
+
+```bash
+./enable-ssl-hofladen.sh
+```
+
+Das Skript erstellt auch eine Diffie-Hellman-Datei und legt
+`/etc/nginx/snippets/ssl-params.conf` mit den empfohlenen TLS-Optionen an.
+Nach erfolgreichem Zertifikatserwerb wird nginx neu geladen.
