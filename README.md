@@ -81,3 +81,26 @@ an den Quellen benötigen einen Neustart des Dienstes:
 sudo systemctl restart kbi-rechner.service
 ```
 
+
+## Deployment für Märkischer Hofladen
+
+Die Anwendung kann unter dem Benutzer `hofladen` betrieben werden. Das Projekt liegt in
+`/home/hofladen/maerkischerhofladen/`.
+
+1. Wechsle in das Verzeichnis und führe das Skript `deploy-hofladen.sh` aus:
+   ```bash
+   ./deploy-hofladen.sh
+   ```
+   Das Skript erstellt eine virtuelle Umgebung, installiert die Abhängigkeiten
+   inklusive `gunicorn` und legt die systemd-Unit `maerkischerhofladen.service`
+   an.
+2. Nach dem Start lauscht Gunicorn auf Port `5001`.
+3. Für den Reverse Proxy kann folgende nginx-Konfiguration genutzt werden:
+   ```nginx
+   include /home/hofladen/maerkischerhofladen/maerkischerhofladen.conf;
+   ```
+
+Ein Neustart des Dienstes ist nach Änderungen an den Quellen nötig:
+```bash
+sudo systemctl restart maerkischerhofladen.service
+```
