@@ -20,6 +20,10 @@ Die Flask-Anwendung kann lokal gestartet werden:
 python app.py
 ```
 
+Danach ist die Weboberfläche unter `http://localhost:5000/` erreichbar.
+Die Seite nutzt Bootstrap 5 und kommuniziert per Fetch-API mit dem
+Endpunkt `/calculate`.
+
 Die weiteren Module können separat in eigenen Skripten importiert und verwendet werden.
 
 ## API-Endpunkte
@@ -44,3 +48,10 @@ Antwort::
   "coin_count": int
 }
 ```
+
+## Weboberfläche
+
+Unter `http://localhost:5000/` wird ein kleines Formular bereitgestellt,
+mit dem sich der Münzwert bequem berechnen lässt. Die Seite ist
+responsiv aufgebaut und nutzt Bootstrap 5. Die Berechnung erfolgt per
+Fetch-Aufruf an den Endpunkt `/calculate`.

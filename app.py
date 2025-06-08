@@ -1,6 +1,6 @@
 """Flask application exposing calculation endpoints."""
 
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 from flask_cors import CORS
 
 from logic.calculation import coin_value_from_weight
@@ -10,8 +10,8 @@ CORS(app)
 
 @app.get('/')
 def index():
-    """Simple placeholder route."""
-    return jsonify({"message": "KbI-Rechner API"})
+    """Render the minimal web frontend."""
+    return render_template('index.html')
 
 
 @app.post('/calculate')
