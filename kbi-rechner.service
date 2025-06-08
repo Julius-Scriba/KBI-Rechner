@@ -1,0 +1,15 @@
+[Unit]
+Description=KBI Rechner Flask App
+After=network.target
+
+[Service]
+User=www-data
+WorkingDirectory=/path/to/KBI-Rechner
+Environment=FLASK_APP=app
+Environment=FLASK_ENV=production
+ExecStart=/path/to/KBI-Rechner/venv/bin/gunicorn --bind 0.0.0.0:5000 app:app
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+

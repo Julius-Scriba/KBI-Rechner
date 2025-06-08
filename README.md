@@ -55,3 +55,29 @@ Unter `http://localhost:5000/` wird ein kleines Formular bereitgestellt,
 mit dem sich der Münzwert bequem berechnen lässt. Die Seite ist
 responsiv aufgebaut und nutzt Bootstrap 5. Die Berechnung erfolgt per
 Fetch-Aufruf an den Endpunkt `/calculate`.
+
+## Deployment Guide
+
+Folgende Schritte richten den Dienst auf einem Ubuntu 22.04 Server ein.
+
+1. Kopiere das Repository auf den Server und wechsle in das Projektverzeichnis.
+2. Führe das bereitgestellte Skript `deploy.sh` aus:
+   ```bash
+   ./deploy.sh
+   ```
+   Das Skript erstellt eine Python-Umgebung, installiert die Abhängigkeiten
+   und legt die systemd‑Unit `kbi-rechner.service` an.
+3. Nach erfolgreicher Ausführung lauscht der Gunicorn‑Server auf Port 5000.
+4. Für den Reverse Proxy kann folgende Beispiel-Konfiguration in nginx
+   eingebunden werden:
+   ```nginx
+   include /path/to/project/nginx.conf;
+   ```
+
+Die Anwendung läuft im Produktionsmodus (`FLASK_ENV=production`). Änderungen
+an den Quellen benötigen einen Neustart des Dienstes:
+
+```bash
+sudo systemctl restart kbi-rechner.service
+```
+
