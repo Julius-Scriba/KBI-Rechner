@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KBI-Rechner</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+<body>
+<div class="container py-4">
+    <h1 class="mb-4">KBI-Rechner</h1>
+    <form id="calcForm" class="row g-3">
+        <div class="col-12 col-md-4">
+            <label for="coinValue" class="form-label">Coin Value</label>
+            <select id="coinValue" class="form-select" required>
+                <option value="2.00">2.00 €</option>
+                <option value="1.00">1.00 €</option>
+                <option value="0.50">0.50 €</option>
+                <option value="0.20">0.20 €</option>
+                <option value="0.10">0.10 €</option>
+                <option value="0.05">0.05 €</option>
+                <option value="0.02">0.02 €</option>
+                <option value="0.01">0.01 €</option>
+            </select>
+        </div>
+        <div class="col-12 col-md-4">
+            <label for="measuredWeight" class="form-label">Measured Weight (g)</label>
+            <input type="number" step="any" id="measuredWeight" class="form-control" required>
+        </div>
+        <div class="col-12 col-md-4">
+            <label for="tareWeight" class="form-label">Tare Weight (g)</label>
+            <input type="number" step="any" id="tareWeight" class="form-control" value="34">
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Calculate</button>
+        </div>
+    </form>
+
+    <div id="result" class="mt-4">
+        <p>Total Value (€): <span id="valueOutput">-</span></p>
+        <p>Coin Count: <span id="countOutput">-</span></p>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
