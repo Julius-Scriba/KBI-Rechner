@@ -1,0 +1,14 @@
+[Unit]
+Description=Maerkischer Hofladen Flask App
+After=network.target
+
+[Service]
+User=hofladen
+WorkingDirectory=/home/hofladen/maerkischerhofladen
+Environment=FLASK_APP=app
+Environment=FLASK_ENV=production
+ExecStart=/home/hofladen/maerkischerhofladen/venv/bin/gunicorn --bind 0.0.0.0:5001 app:app
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
